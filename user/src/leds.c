@@ -1,9 +1,9 @@
-#include "main.h"
+#include "leds.h"
 
-int main(void) {
-	
+void setLeds(void) {
 	GPIO_InitTypeDef GPIO_Init_LED;
 	
+
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	
 	GPIO_Init_LED.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
@@ -14,18 +14,4 @@ int main(void) {
 	
 	GPIO_Init(GPIOD, &GPIO_Init_LED);
 	
-	void setUsart();
-	
-	
-	while(true) {
-		
-		USART_SendData(USART2, 0xFFU);
-		for (int i = 0; i < 999999; i++);
-		GPIO_ResetBits(GPIOD, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
-		for (int i = 0; i < 999999; i++);
-	}
-	
 }
-
-
-

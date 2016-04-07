@@ -4,20 +4,20 @@ void setUsart(void) {
 	GPIO_InitTypeDef GPIO_Init_USART;
 	USART_InitTypeDef USART_InitUser;
 	
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 	
-	GPIO_Init_USART.GPIO_Pin    = GPIO_Pin_2 | GPIO_Pin_3;
+	GPIO_Init_USART.GPIO_Pin    = GPIO_Pin_10 | GPIO_Pin_11;
 	GPIO_Init_USART.GPIO_Mode   = GPIO_Mode_AF;
 	GPIO_Init_USART.GPIO_Speed  = GPIO_Speed_50MHz;
 	GPIO_Init_USART.GPIO_OType  = GPIO_OType_PP;
 	GPIO_Init_USART.GPIO_PuPd   = GPIO_PuPd_UP;
 	
-	GPIO_Init(GPIOA, &GPIO_Init_USART);
+	GPIO_Init(GPIOC, &GPIO_Init_USART);
 	
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2);
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2);
+	GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_UART4);
+	GPIO_PinAFConfig(GPIOC, GPIO_PinSource11, GPIO_AF_UART4);
 	
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE);
 	
 	USART_InitUser.USART_BaudRate = 9600;
 	USART_InitUser.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
@@ -26,9 +26,9 @@ void setUsart(void) {
 	USART_InitUser.USART_StopBits = USART_StopBits_1;
 	USART_InitUser.USART_WordLength = USART_WordLength_8b;
 	
-	USART_Init(USART2, &USART_InitUser);
+	USART_Init(UART4, &USART_InitUser);
 	
-	USART_Cmd(USART2, ENABLE);
+	USART_Cmd(UART4, ENABLE);
 	
 	
 }
